@@ -1,16 +1,21 @@
+
 public class Plane3D {
 
     private double a,b,c,d;
 
     public Plane3D(Point3D p1, Point3D p2, Point3D p3){
-        //a=(y2-y1)*(z3-z1)-(y3-y1)*(z2-z1)
-        this.a=(p2.getY()-p1.getY())*(p3.getZ()-p1.getZ())-(p3.getY()-p1.getY())*(p2.getZ()-p1.getZ());
-        //b=(x3-x1)*(z2-z1)-(x2-x1)*(z3-z1)
-        this.b=(p3.getX()-p1.getX())*(p2.getZ()-p1.getZ())-(p2.getX()-p1.getX())*(p3.getZ()-p1.getZ());
-        //c=(x2-x1)*(y3-y1)-(y2-y1)*(x3-x1)
-        this.c=(p2.getX()- p1.getX())*(p3.getY()-p1.getY())-(p2.getY()-p1.getY())*(p3.getX()-p1.getX());
-        //d=(-a*x1-b*y1-c*z1);
-        this.d=(-a*p1.getX()-b*p1.getY()-c*p1.getZ());
+        if(p1.equals(p2)|| p1.equals(p3)||p2.equals(p3)){
+            System.out.println("Point cannot be the same");
+        }else {
+            //a=(y2-y1)*(z3-z1)-(y3-y1)*(z2-z1)
+            this.a=(p2.getY()-p1.getY())*(p3.getZ()-p1.getZ())-(p3.getY()-p1.getY())*(p2.getZ()-p1.getZ());
+            //b=(x3-x1)*(z2-z1)-(x2-x1)*(z3-z1)
+            this.b=(p3.getX()-p1.getX())*(p2.getZ()-p1.getZ())-(p2.getX()-p1.getX())*(p3.getZ()-p1.getZ());
+            //c=(x2-x1)*(y3-y1)-(y2-y1)*(x3-x1)
+            this.c=(p2.getX()- p1.getX())*(p3.getY()-p1.getY())-(p2.getY()-p1.getY())*(p3.getX()-p1.getX());
+            //d=(-a*x1-b*y1-c*z1);
+            this.d=(-a*p1.getX()-b*p1.getY()-c*p1.getZ());
+        }
     }
 
     public Plane3D(double a, double b, double c, double d){

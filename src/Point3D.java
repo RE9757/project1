@@ -19,4 +19,13 @@ public class Point3D {
     public double getZ(){
         return Z;
     }
+
+    public boolean equals(Point3D pt){
+        return (X==pt.getX())&&(Y== pt.getY())&&(Z==pt.getZ());
+    }
+
+    @Override
+    public String toString() {
+        return X+"\t"+Y+"\t"+Z;
+    }
 }

@@ -1,10 +1,10 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.Scanner;
+import java.io.File;  // Import the File class
 
 import static java.lang.Math.random;
 
@@ -27,7 +27,30 @@ public class PointCloud {
     }
 
     public void save(String filename){
-
+        String context = "x\ty\tz"+"\n";
+        for (Point3D p:file) {
+            context += p.toString()+"\n";
+        }
+        try {
+            File myObj = new File(filename+".txt");
+            if (myObj.createNewFile()) {
+                System.out.println("File created: " + myObj.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        try {
+            FileWriter myWriter = new FileWriter(filename+".txt");
+            myWriter.write(context);
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
     }
 
     public Iterator<Point3D> iterator(){
