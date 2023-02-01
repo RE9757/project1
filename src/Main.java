@@ -1,3 +1,5 @@
+import java.util.Iterator;
+
 public class Main {
     public static void main(String[] args) {
         //Point3D a = new Point3D(-1,2,1);
@@ -6,10 +8,15 @@ public class Main {
 
         //Plane3D p = new Plane3D(a,b,c);
         //System.out.println(p);
-        Plane3D f = new Plane3D(2,-2,5,8);
-        Point3D q = new Point3D(4,-4,3);
-
-        System.out.println(f.getDistance(q));
+//        Plane3D f = new Plane3D(2,-2,5,8);
+//        Point3D q = new Point3D(4,-4,3);
+//
+//        System.out.println(f.getDistance(q));
+        PointCloud pc = new PointCloud("src/PointCloud1.xyz");
+        Iterator<Point3D> point3DIterator = pc.iterator();
+        for(int i =0; i<100; i++){
+            System.out.println(point3DIterator.next());
+        }
 
     }
 }

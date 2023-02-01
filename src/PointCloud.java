@@ -71,11 +71,14 @@ public class PointCloud {
                 //while (st.hasMoreTokens()){
                     //list.add(st.nextToken());
                 //}
-                String[] s = line.split(" ");
+                String[] s = line.split("\\s+");
                 if(count == 0){
 
                 }else{
-                    Point3D p = new Point3D(Double.parseDouble(s[0]),Double.parseDouble(s[1]),Double.parseDouble(s[2]));
+                    double x = Double.parseDouble(s[0]);
+                    double y = Double.parseDouble(s[1]);
+                    double z = Double.parseDouble(s[2]);
+                    Point3D p = new Point3D(x,y,z);
                     list.add(p);
                 }
                 count++;
