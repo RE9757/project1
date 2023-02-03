@@ -25,6 +25,10 @@ public class Plane3D {
         this.d=d;
     }
 
+    public boolean contain(Point3D pt){
+        return a*pt.getX()+b*pt.getY()+c*pt.getZ()+d==0;
+    }
+
     public double getDistance(Point3D pt){
         double m = Math.abs((a* pt.getX()+b*pt.getY()+c*pt.getZ()+d));
         float n = (float)Math.sqrt(a*a+b*b+c*c);

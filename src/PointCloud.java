@@ -14,7 +14,7 @@ public class PointCloud {
 
     public PointCloud(){}
     public PointCloud(String filename){
-        this.file = ReadInFile(filename);
+        this.file = ReadInFile(filename+".xyz");
     }
 
     public void addPoint(Point3D pt){
@@ -32,7 +32,7 @@ public class PointCloud {
             context += p.toString()+"\n";
         }
         try {
-            File myObj = new File(filename+".txt");
+            File myObj = new File(filename);
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
             } else {
@@ -43,7 +43,7 @@ public class PointCloud {
             e.printStackTrace();
         }
         try {
-            FileWriter myWriter = new FileWriter(filename+".txt");
+            FileWriter myWriter = new FileWriter(filename);
             myWriter.write(context);
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
@@ -51,6 +51,16 @@ public class PointCloud {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
+    }
+
+    public LinkedList<Point3D> getFile() {
+        return file;
+    }
+
+    public void setFile(LinkedList<Point3D> file){this.file=file;}
+
+    public void remove(Point3D pt){
+        file.remove(pt);
     }
 
     public Iterator<Point3D> iterator(){
