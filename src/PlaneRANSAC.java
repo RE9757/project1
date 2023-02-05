@@ -103,28 +103,38 @@ public class PlaneRANSAC {
         p1 = pc.getPoint();
         p2 = pc.getPoint();
         p3 = pc.getPoint();
-        if(p1 != null && p2 != null && p3 != null){
-        while(p2.equals(p1)){
-            p2 = pc.getPoint();
-        }
-        while(p3.equals(p2)||p3.equals(p1)){
-            p3 = pc.getPoint();
-        }//get three random points and make sure they are not the same as each other
 
-        Plane3D plane = new Plane3D(p1,p2,p3);//create a corresponding plane
-        this.randomPlane = plane;
-        return plane;}else{
+        if(p1 != null && p2 != null && p3 != null){
+            while(p2.equals(p1)){
+                p2 = pc.getPoint();
+            }
+            while(p3.equals(p2)||p3.equals(p1)){
+                p3 = pc.getPoint();
+            }//get three random points and make sure they are not the same as each other
+            while(true){
+                try {
+                    Plane3D plane = new Plane3D(p1, p2, p3);
+                    this.randomPlane = plane;
+                    return plane;
+                }//create a corresponding plane
+                catch (ArithmeticException e){
+                    p3 = pc.getPoint();
+                }
+            }
+        }else {
             System.out.println("Given point cloud has problem, unable to generate random plane!");
             return null;
         }
     }
 
     /**Process the steps of numberOfIterations times to find dominate plane from filename, remove the points
-     * belong to dominate plane(by cartesian equation) and save(this process will repeat 3 time) */
+     * belong to dominate plane and save(this process will repeat 3 time) */
     public void run(int numberOfIterations, String filename){
 
+        //create a point cloud by filename
         this.pc = new PointCloud(filename);
 
+        //iteration given number of times to find out dominate plane
         for(int i = 0; i < numberOfIterations; i++){
             LinkedList<Point3D> temp = new LinkedList<>();
             temp = getSupports(randomPlane);
@@ -136,23 +146,26 @@ public class PlaneRANSAC {
             this.randomPlane = getRandomPlane3D();
         }
 
+        //create a new point cloud, save the dominate plane
         PointCloud p1 = new PointCloud();
         p1.setFile(bestSupportPtList);
         p1.save(filename+"_p1.xyz");
 
+        //remove all the point from point cloud
         for(Point3D pt: bestSupportPtList){
-            if(bestSupportPlane.contain(pt)){pc.remove(pt);}
+            pc.remove(pt);
         }
 
-
-
+        //now random a new plane and calculate the p%, then calculate the number of iterations required.
         this.randomPlane = getRandomPlane3D();
         double p = getPercentageOfPointsOnPlane(randomPlane);
         numberOfIterations = getNumberOfIterations(confidence,p);
 
+        //reset the dominate plane info
         bestSupport = 0;
         bestSupportPtList = new LinkedList<>();
 
+        //try to find out 2nd dominate plane
         for(int i = 0; i < numberOfIterations; i++){
             LinkedList<Point3D> temp = new LinkedList<>();
             temp = getSupports(randomPlane);
@@ -164,21 +177,25 @@ public class PlaneRANSAC {
             this.randomPlane=getRandomPlane3D();
         }
 
+        //create a new point cloud and save 2nd dominate plane
         PointCloud p2 = new PointCloud();
         p2.setFile(bestSupportPtList);
         p2.save(filename+"_p2.xyz");
 
         for(Point3D pt: bestSupportPtList){
-            if(bestSupportPlane.contain(pt)){pc.remove(pt);}
+            pc.remove(pt);
         }
 
+        //random a new plane and calculate the number of iterations
         this.randomPlane = getRandomPlane3D();
         double q = getPercentageOfPointsOnPlane(randomPlane);
         numberOfIterations = getNumberOfIterations(confidence,q);
 
+        //reset dominate plane info
         bestSupport = 0;
         bestSupportPtList = new LinkedList<>();
 
+        //repeat iteration numbers of times to find out 3rd dominate plane
         for(int i = 0; i < numberOfIterations; i++){
             LinkedList<Point3D> temp = new LinkedList<>();
             temp = getSupports(randomPlane);
@@ -190,16 +207,18 @@ public class PlaneRANSAC {
             this.randomPlane=getRandomPlane3D();
         }
 
+        //create a new pointcloud and save it
         PointCloud p3 = new PointCloud();
         p3.setFile(bestSupportPtList);
         p3.save(filename+"_p3.xyz");
 
+        //remove all the dominate plane point from current point cloud
         for(Point3D pt: bestSupportPtList){
-            if(bestSupportPlane.contain(pt)){pc.remove(pt);}
+            pc.remove(pt);
         }
 
+        //save the rest of point cloud into xx_p0xyz
         pc.save(filename+"_p0.xyz");
-        //save && remove points
     }
 
     //public LinkedList<Point3D> getBestSupportPtList(){return bestSupportPtList;}
