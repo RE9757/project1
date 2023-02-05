@@ -63,8 +63,12 @@ public class PlaneRANSAC {
 
     /**calculate what is the percentage of points support plane*/
     public double getPercentageOfPointsOnPlane(Plane3D plane3D){
-        double result = (double) (getSupports(plane3D).size())/(double) (pc.getFile().size());
-        return result;
+        try {double result = (double) (getSupports(plane3D).size())/(double) (pc.getFile().size());
+            return result;
+        } catch (NullPointerException e){
+            System.out.println("Cannot calculate percentage of point on plane due to invalid info");
+            return 0.0;
+        }
     }
 
 
