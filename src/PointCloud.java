@@ -22,8 +22,13 @@ public class PointCloud {
     }
 
     public Point3D getPoint(){
-        int randomNum = ThreadLocalRandom.current().nextInt(0, file.size() + 1);
-        return file.get(randomNum);
+        if(file.size()!=0){
+            int randomNum = ThreadLocalRandom.current().nextInt(0, file.size() + 1);
+            return file.get(randomNum);
+        }else {
+            System.out.println("File is empty, please check file validation");
+            return null;
+        }
     }
 
     public void save(String filename){
@@ -77,10 +82,6 @@ public class PointCloud {
 
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                //StringTokenizer st = new StringTokenizer(line);
-                //while (st.hasMoreTokens()){
-                    //list.add(st.nextToken());
-                //}
                 String[] s = line.split("\\s+");
                 if(count == 0){
 
@@ -95,7 +96,7 @@ public class PointCloud {
             }
             scanner.close();
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Given file not found!");
         }
         return list;
     }
