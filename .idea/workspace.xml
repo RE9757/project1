@@ -5,18 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="720b76d2-0a88-4d08-ae08-f070686effc0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/PointCloud2.xyz" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/PointCloud3.xyz" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Plane3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Plane3D.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PlaneRANSAC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PlaneRANSAC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Point3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Point3D.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PointCloud.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PointCloud.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PointCloud1_p0.xyz" beforeDir="false" afterPath="$PROJECT_DIR$/src/PointCloud1_p0.xyz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PointCloud1_p1.xyz" beforeDir="false" afterPath="$PROJECT_DIR$/src/PointCloud1_p1.xyz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PointCloud1_p2.xyz" beforeDir="false" afterPath="$PROJECT_DIR$/src/PointCloud1_p2.xyz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PointCloud1_p3.xyz" beforeDir="false" afterPath="$PROJECT_DIR$/src/PointCloud1_p3.xyz" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

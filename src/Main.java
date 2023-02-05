@@ -1,6 +1,14 @@
 import java.util.Iterator;
 
-/**Main method is used to run the algorithm*/
+/**Student name: Zhong Tao
+ * Student number: 300222579
+ * Class: CSI2120
+ * Date: 02/05/2023
+ *
+ *
+ * Main method is used to run the algorithm
+ * because the run function require number of iteration to start, so main needs to generate point cloud and random plane to calculate the number of iterations
+ * */
 public class Main {
     public static void main(String[] args) {
 
